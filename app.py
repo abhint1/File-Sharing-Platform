@@ -10,7 +10,7 @@ shareable_links = {}
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.html', shareable_link_download=None, shareable_link_view=None)
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -30,11 +30,16 @@ def upload_file():
         # Save the file to the 'uploads' folder
         file.save(file_path)
         
-        # Generate a shareable link
-        link = secrets.token_urlsafe(16)
-        shareable_links[link] = file_path
+        # Generate a shareable link for download
+        link_download = secrets.token_urlsafe(16)
+        shareable_links[link_download] = file_path
 
-        return f"File uploaded! Share this link: {request.host_url}download/{link}"
+        # Generate a shareable link for viewing in a new tab
+        link_view = secrets.token_urlsafe(16)
+        shareable_links[link_view] = file_path
+
+        return render_template('index.html', shareable_link_download=request.host_url + 'download/' + link_download, shareable_link_view=request.host_url + 'download/' + link_view)
+
 
 @app.route('/download/<link>')
 def download_file(link):

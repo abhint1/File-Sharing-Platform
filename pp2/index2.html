@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Sharing Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 400px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="file"] {
+            border: 2px solid #007BFF;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .download-box {
+            display: none;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            max-width: 400px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <h1>File Sharing Platform</h1>
+
+    <div class="container">
+        <form class="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".jpg, .jpeg, .png, .gif, .pdf, .docx">
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+
+    <div class="download-box" id="download-box">
+        <p>Shareable Links:<br> <a id="download-link" href="#">Download</a></p>
+    </div>
+
+</body>
+</html>
